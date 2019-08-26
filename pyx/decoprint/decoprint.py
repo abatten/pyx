@@ -1,6 +1,6 @@
 import os
 import datetime
-
+import __main__
 from pyx import Params
 
 def vprint(*args, verbose=True, **kwargs):
@@ -45,7 +45,7 @@ def header(title=None, printParams='auto'):
     >>> decoprint.header("THIS IS A HEADER")
 
     *********************************************
-              THIS IS A HEADER
+                   THIS IS A HEADER
     .............................................
     FILE  : decoprint.py
     PATH  : /Users/abatten/pyx/pyx/decoprint.py
@@ -54,7 +54,9 @@ def header(title=None, printParams='auto'):
     TIME  : 15:18:55.503771
     *********************************************
     """
-    filename = os.path.basename(__file__)
+    # __main__.file__ gets the filename of the script that is running.
+    # Whereas __file__ is this file.
+    filename = os.path.basename(__main__.__file__)
 
     if printParams == 'auto':
         printParams = printing_params()
@@ -78,7 +80,7 @@ def header(title=None, printParams='auto'):
         info.append(f"{'FILE':<6}: {filename}")
 
     if printParams['header.print_path']:
-        info.append(f"{'PATH':<6}: {__file__}")
+        info.append(f"{'PATH':<6}: {__main__.__file__}")
 
     if printParams['header.print_user']:
         username = os.getlogin()
@@ -92,6 +94,8 @@ def header(title=None, printParams='auto'):
         info.append(f"{'TIME':<6}: {now.time()}")
     
     info.append(printParams['section.line_major'])
+
+    info.append("\n")
 
     info = '\n'.join(info)
     print(info)
