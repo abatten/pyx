@@ -1,6 +1,7 @@
 import os
 import datetime
 import __main__
+
 from pyx import Params
 
 def vprint(*args, verbose=True, **kwargs):
@@ -33,7 +34,7 @@ def header(title=None, printParams='auto'):
     >>> decoprint.header()
 
     *********************************************
-                      DECOPRINT
+                    DECOPRINT.PY
     .............................................
     FILE  : decoprint.py
     PATH  : /Users/abatten/pyx/pyx/decoprint.py
@@ -147,8 +148,10 @@ def printing_params():
 
     pParams['header.print_file'] = True
     pParams['header.print_path'] = True
-    pParams['header.print_user'] = True
+    pParams['header.print_user'] = False
     pParams['header.print_date'] = True
     pParams['header.print_time'] = True
     pParams['header.centre_title'] = True
     return pParams
+
+
