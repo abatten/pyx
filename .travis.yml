@@ -1,0 +1,18 @@
+language: python
+os: linux
+dist: xenial
+sudo: false
+
+python:
+    - "3.6"
+    - "3.7"
+
+install:
+    - pip install --upgrade pip setuptools
+    - pip install -r requirements_dev.txt
+
+script:
+    - pytest
+
+after_sucess:
+    - codecov
