@@ -16,9 +16,9 @@ def vprint(*args, verbose=True, **kwargs):
         print(*args, **kwargs)
 
 
-def header(title=None, printParams='auto'):
+def print_header(title=None, printParams='auto'):
     """
-    Prints out a decorated header containing information about file,
+    Prints out a header containing information about file,
     file location, user, date and time.
 
     Parameters
@@ -27,29 +27,28 @@ def header(title=None, printParams='auto'):
         The heading title. This will be capitalised in the print out.
         If *None*, it will use the name returned by __file__ instead.
 
-
     Example
     -------
 
-    >>> decoprint.header()
+    >>> scriptinfo.print_header()
 
     *********************************************
-                    DECOPRINT.PY
+                    SCRIPTINFO.PY
     .............................................
     FILE  : decoprint.py
-    PATH  : /Users/abatten/pyx/pyx/decoprint.py
+    PATH  : /Users/abatten/pyx/pyx/scriptinfo.py
     USER  : abatten
     DATE  : 2019-08-22
     TIME  : 15:20:12.114276
     *********************************************
 
-    >>> decoprint.header("THIS IS A HEADER")
+    >>> scriptinfo.print_header("THIS IS A HEADER")
 
     *********************************************
                    THIS IS A HEADER
     .............................................
-    FILE  : decoprint.py
-    PATH  : /Users/abatten/pyx/pyx/decoprint.py
+    FILE  : scriptinfo.py
+    PATH  : /Users/abatten/pyx/pyx/scriptinfo.py
     USER  : abatten
     DATE  : 2019-08-22
     TIME  : 15:18:55.503771
@@ -102,13 +101,13 @@ def header(title=None, printParams='auto'):
     print(info)
 
 
-def footer(title=None, printParams='auto'):
+def print_footer(title=None, printParams='auto'):
     """
     By default prints the date and time information.
 
     Example:
 
-    >>> pyx.decoprint.footer()
+    >>> pyx.scriptinfo.print_footer()
 
     *********************************************
                     COMPLETED
