@@ -1,5 +1,6 @@
-
-
+"""
+str_tools : A series of functions for manipulating strings
+"""
 
 def float2str(flt, separator=".", precision=None, prefix=None, suffix=None):
     """
