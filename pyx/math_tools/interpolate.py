@@ -5,7 +5,7 @@ def interpolateArrays(sample, xvals, fvals, kind='linear'):
     array = []
 
     if kind == 'linear':
-
+        pass
 
     elif kind == 'cubic':
         msg = f"{kind} interpolation has not been implemented yet"

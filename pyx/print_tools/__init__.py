@@ -1,2 +1,2 @@
-from .scriptinfo import *
+from .script_info import *
 

@@ -62,7 +62,7 @@ def print_header(title=None, printParams='auto'):
         printParams = printing_params()
 
     info = []
-    
+    info.append("\n")    
     info.append(printParams['section.line_major'])
 
     # If no title is provided, use the script name as a title.
@@ -129,7 +129,7 @@ def print_footer(title=None, printParams='auto'):
        
     if title is None:
         title = "COMPLETED"
-    header(title=title, printParams=printParams)
+    print_header(title=title, printParams=printParams)
 
 
 def printing_params():
