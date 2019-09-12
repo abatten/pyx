@@ -110,7 +110,7 @@ def cMpc_to_z(cMpc, cosmology="Planck15"):
     distance_zero_threshold = 1e-4 * apu.Mpc
 
     # Check of the input distances is a list or a scalar. 
-    distance_is_scalar = not isinstance(cMpc, list)
+    distance_is_scalar = cMpc.isscalar
     
     # If the distance is a scalar, perform a scalar calculation.
     if distance_is_scalar:
@@ -151,11 +151,11 @@ def get_cosmology_from_name(cosmology):
 
     # This list should be updated when astropy releases the Planck18 cosmology
     available_cosmologies = {
-        "WMAP5" : acosmo.WMAP5,
-        "WMAP7" : acosmo.WMAP7,
-        "WMAP9" : acosmo.WMAP9,
-        "Planck13" : acosmo.Planck13,
-        "Planck15" : acosmo.Planck15,
+        "WMAP5": acosmo.WMAP5,
+        "WMAP7": acosmo.WMAP7,
+        "WMAP9": acosmo.WMAP9,
+        "Planck13": acosmo.Planck13,
+        "Planck15": acosmo.Planck15,
     }
 
     # If the user uses a string for the cosmology look it up in the dict.
