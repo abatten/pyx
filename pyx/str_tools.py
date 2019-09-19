@@ -71,6 +71,7 @@ def float2str(flt, separator=".", precision=None, prefix=None, suffix=None):
 
 def str2float(string, separator=".", prefix=None, suffix=None):
 
+
     if not isinstance(string, str):
             
         msg = ("""Input is expected to be a string. Instead str2float
