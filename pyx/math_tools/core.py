@@ -21,7 +21,7 @@ def reshape_to_1D(array):
     for axis in shape:
         total_elements = axis * total_elements
 
-    return array.reshape(1, total_elements)
+    return array.reshape(total_elements)
 
 def mean_median_mode(array):
     """
