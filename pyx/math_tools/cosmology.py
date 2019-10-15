@@ -3,21 +3,6 @@ import astropy.units as apu
 import astropy.constants as apc
 import astropy.cosmology as acosmo
 
-#def interpolateArrays(sample, xvals, fvals, kind='linear'):
-
-#    array = []
-
-#    if kind == 'linear':
-
-
-#    elif kind == 'cubic':
-#        msg = f"{kind} interpolation has not been implemented yet"
-#        raise NotImplementedError(msg)
-
-    
-
-#    return array
-
 
 def z_to_cMpc(redshift, cosmology='Planck15'):
     """

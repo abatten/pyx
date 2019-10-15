@@ -1,1 +1,1 @@
-from .globb import *
+from .core import *

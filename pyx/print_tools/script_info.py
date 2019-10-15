@@ -4,17 +4,6 @@ import __main__
 
 from pyx import Params
 
-def vprint(*args, verbose=True, **kwargs):
-    """
-    Behaves exactly the same as the regular print function except
-    with the additional 'verbose' keyword.
-
-    Setting `verbose = False` will skip the print statement entirely.
-
-    """
-    if verbose:
-        print(*args, **kwargs)
-
 
 def print_header(title=None, printParams='auto'):
     """

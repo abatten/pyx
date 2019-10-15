@@ -1,6 +1,3 @@
-"""
-Blob: "Better Glob"
-"""
 import os
 
 from glob import glob
