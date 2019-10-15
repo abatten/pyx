@@ -23,6 +23,15 @@ def reshape_to_1D(array):
 
     return array.reshape(total_elements)
 
+
+def calc_bin_centre(bin_edges):
+    """
+    Calculates the centre of a histogram bin fromthe big edges.
+
+    """
+    return bin_edges[:-1] + np.diff(bin_edges) / 2
+
+
 def mean_median_mode(array):
     """
     Returns the mean, median and mode of an array
