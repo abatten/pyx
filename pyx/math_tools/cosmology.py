@@ -201,7 +201,9 @@ def comoving_to_physical(dist_comoving, redshift):
 
     Parameters
     ----------
-    distance: array-like
+    dist_comoving: array-like
+
+    redshift: 
 
     Returns
     -------
@@ -222,7 +224,9 @@ def physical_to_comoving(dist_physical, redshift):
 
     Parameters
     ----------
-    distance: array-like
+    dist_physical: array-like
+
+    redshift: 
 
     Returns
     -------

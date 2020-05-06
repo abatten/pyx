@@ -1,6 +1,44 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.axes_grid1 import make_axes_locatable
+from cycler import cycler
+
+def get_rcparam_settings():
+    """
+    Get 
+
+    Returns
+    -------
+    rc_params: dict
+        A dictionary of rcParam values for matplotlib. To update the 
+        rcParams in a script use:
+
+            import matplotlib.pyplot as plt
+            plt.rcParams.update(rc_params)
+    """
+
+    rc_params = {
+        "axes.prop_cycle": cycler('color', 
+            ['#1b9e77','#d95f02','#7570b3', 
+             '#e7298a','#66a61e','#e6ab02',
+             '#a6761d','#666666']),
+        "axes.labelsize": 18,
+        "figure.dpi": 200,
+        "legend.fontsize": 12,
+        "legend.frameon": False,
+        "text.usetex": True,
+        "xtick.direction": 'in',
+        "xtick.labelsize": 14,
+        "xtick.minor.visible": True,
+        "xtick.top": True,
+        "ytick.direction": 'in',
+        "ytick.labelsize": 14,
+        "ytick.minor.visible": True,
+        "ytick.right": True,
+
+    }
+
+    return rc_params
 
 
 def plot_2d_array(data, xvals=None, yvals=None, extents=None, passed_ax=False, 
@@ -26,6 +64,10 @@ def plot_2d_array(data, xvals=None, yvals=None, extents=None, passed_ax=False,
         
 
     """
+
+    rc_params = get_rcparam_settings()
+    plt.rcParams.update(rc_params)
+
     if ((xvals is None and yvals is not None) or
         (yvals is None and xvals is not None)):
         msg = ("Both xvals and yvals must be either None or not None. "
@@ -55,9 +97,7 @@ def plot_2d_array(data, xvals=None, yvals=None, extents=None, passed_ax=False,
 
     else:
         im = axis.pcolormesh(data, *args, **kwargs)
-
     
-
     return im
 
 
