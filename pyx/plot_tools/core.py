@@ -16,9 +16,9 @@ def plot_2d_array(data, xvals=None, yvals=None, extents=None, passed_ax=False,
     yvals: numpy.ndarray, optional
 
     extents: (xmin, xmax, ymin, ymax), optional
-        These are
 
-    passed_ax: 
+    passed_ax:
+
 
     Returns
     -------
@@ -55,8 +55,6 @@ def plot_2d_array(data, xvals=None, yvals=None, extents=None, passed_ax=False,
 
     else:
         im = axis.pcolormesh(data, *args, **kwargs)
-
-    
 
     return im
 
