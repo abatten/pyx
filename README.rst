@@ -6,23 +6,23 @@ pyx
 Description
 ...........
 
-**pyx** is a package containing various utility functions and modules created
-by `@abatten <https://github.com/abatten>`._
+``pyx`` is a package containing various utility functions and modules created
+by `@abatten <https://github.com/abatten>`_.
 
 
 Requirements
 ............
 
-- `numpy`
-- `scipy`
-- `matplotlib`
+- ``numpy``
+- ``scipy``
+- ``matplotlib``
 
 
 Modules
 .......
 
-- `pyx.math_tools`:
+- ``pyx.math_tools``:
 
-- `pyx.plot_tools`:
+- ``pyx.plot_tools``:
 
 
