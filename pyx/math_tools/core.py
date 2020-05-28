@@ -26,25 +26,53 @@ def reshape_to_1D(array):
 
 def calc_bin_centre(bin_edges):
     """
-    Calculates the centre of a histogram bin fromthe big edges.
+    Calculates the centre of a histogram bin from the bin edges.
 
     """
     return bin_edges[:-1] + np.diff(bin_edges) / 2
 
+import numpy as np
 
-def mean_median_mode(array):
+def rebin(array, bin_size):
     """
-    Returns the mean, median and mode of an array
+    Rebins 1D data
 
     Parameters
     ----------
-    array: numpy.ndarray
+    array: array-like
 
-    Returns:
-    mean, median, mod
+    bin_size: int
+        The number of elements
+
     """
-    mean = np.mean(array)
-    median = np.median(array)
-    mode = stats.mode(array)[0][0]
+    if not isinstance(bin_size, int):
+        msg = ("bin_size must have type int")
+        raise ValueError(msg)
 
-    return mean, median, mode
+    if bin_size > len(array):
+        msg = ("bin_size must be less than the length of array")
+        raise ValueError(msg)
+
+    if bin_size < 1:
+        msg = ("bin_size must have value greater or equal to 1")
+        raise ValueError(msg)
+
+    # Calculate the length of the new array
+    # Note that if the array isn't divisible by bin_size
+    # It will leave off the remaining bins
+    new_size = int(array.size / bin_size)
+
+    # Generate a new empty array for the new bins
+    new_array = np.zeros(new_size)
+
+    # Loop over each of the new bins
+    for idx in range(new_size):
+
+        # Calculate the start and end points for each new bin
+        start_idx = idx * bin_size
+        end_idx = start_idx + bin_size
+
+        # Combine the bins between start_idx and end_idx
+        new_array[idx] = np.sum(array[start_idx:end_idx])
+
+    return new_array
