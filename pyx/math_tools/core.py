@@ -21,7 +21,21 @@ def reshape_to_1D(array):
     for axis in shape:
         total_elements = axis * total_elements
 
-    return array.reshape(total_elements)
+    return np.reshape(array, total_elements)
+
+
+def mixup(array):
+    """
+    Completly randomises an input array.
+    """
+    original_shape = array.shape
+    output = reshape_to_1D(array) 
+    np.random.shuffle(output)
+    output = np.reshape(output, original_shape)
+    return output
+
+
+
 
 
 def calc_bin_centre(bin_edges):
