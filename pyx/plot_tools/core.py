@@ -41,6 +41,42 @@ def get_rcparam_settings():
     return rc_params
 
 
+def make_lookback_time_axis(ax, cosmo, max_redshift):
+    """
+    """
+    ax2 = ax.twiny()
+
+    minor_tick_labels = np.arange(0, 13, 2)
+    major_tick_labels = np.arange(1, 13, 2)
+
+    major_tick_loc = np.zeros(len(major_tick_labels))
+    minor_tick_loc = np.zeros(len(minor_tick_labels))
+
+    for idx, labels in enumerate(zip(major_tick_labels, minor_tick_labels)):
+        major, minor = labels
+
+        if major < 0.0001:
+            major_tick_loc[idx] = 0
+        else:
+            major_tick_loc[idx] = cosmology.z_at_value(cosmo.lookback_time, apu.Gyr * major) / max_redshift
+
+        if minor < 0.0001:
+            minor_tick_loc[idx] = 0
+        else:
+            minor_tick_loc[idx] = cosmology.z_at_value(cosmo.lookback_time, apu.Gyr * minor) / max_redshift
+
+
+
+    ax2.set_xticks(major_tick_loc)
+    ax2.set_xticks(minor_tick_loc, minor=True)
+
+    major_tick_labels = [f"$\mathrm{x:.1f}$" for x in major_tick_labels]
+    ax2.set_xticklabels(major_tick_labels, fontsize=14)
+
+    return ax2
+
+
+
 def plot_2d_array(data, xvals=None, yvals=None, extents=None, passed_ax=False, 
                   *args, **kwargs):
     """
