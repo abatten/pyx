@@ -1,0 +1,13 @@
+include *.txt
+include *.yml
+include LICENSE
+include MANIFEST.in
+recursive-include pyx *.npz
+recursive-include pyx *.png
+recursive-include tests *.py
+
+exclude docs .github
+recursive-exclude docs *
+exclude *.yml
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
