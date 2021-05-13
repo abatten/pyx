@@ -36,7 +36,6 @@ jobs:
       run: |
         check-manifest
         python setup.py sdist bdist_wheel
-        twine check dist/*
     - name: Test package
       run: |
         pytest
