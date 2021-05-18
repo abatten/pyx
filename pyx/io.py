@@ -1,7 +1,10 @@
 import numpy as np
 
-def writeline(output, data, col_width=16, decimals=4):
+def write_row(output, data, col_width=16, decimals=4):
     """
+    A wrapper around the write function to automate spacing when 
+    writing rows of columned data to file.  
+
     Parameters
     ----------
     output: TextIOWrapper
