@@ -54,7 +54,7 @@ def float2str(flt, separator=".", precision=None, prefix=None, suffix=None):
     """
     
     if isinstance(precision, int):
-        str_number = "{num:.{pre}f}".format(num=flt, pre=precision)
+        str_number = f"{flt:.{precision}f}"
     else:
         str_number = str(flt)
 
