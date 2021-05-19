@@ -2,7 +2,7 @@
 .DS_Store
 ._.DS_Store
 
-
+docs/build/*
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
