@@ -2,7 +2,7 @@ import numpy as np
 import scipy.interpolate as interpolate
 
 
-class cdf_sampler(object):
+class icdf_sampler(object):
     # __init__ computed the normalisation
     # factor then constructs the cumulative
     # distribution function (cdf).
