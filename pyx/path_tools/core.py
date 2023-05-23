@@ -45,3 +45,4 @@ def get_paths_with_prefix(loc=".", prefix=None):
     -------
 
     """
+    pass

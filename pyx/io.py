@@ -30,12 +30,13 @@ def write_row(output, data, col_width=16, decimals=4):
 
     if isinstance(data, list):
         data = np.array(data)
-    
+   
+
     if data.dtype.type in (np.str_,):
         for item in data:
             row = f"{row}{item:<{col_width}}"
 
-    elif data.dtype in (np.float64, np.int64):
+    else:
         for item in data:
             row = f"{row}{item:<{col_width}.{decimals}f}"
 

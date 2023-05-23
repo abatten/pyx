@@ -6,12 +6,18 @@ class icdf_sampler(object):
     # __init__ computed the normalisation
     # factor then constructs the cumulative
     # distribution function (cdf).
-    def __init__(self, x, y, seed=None):
-        if seed is None:
-            raise ValueError("Must provide seed for np.random.default_rng()")
+    def __init__(self, x, y, seed=None, rng=None):
 
-        self.rng = np.random.default_rng(seed)
-        self.seed = seed
+        if rng:
+            self.rng = rng
+
+        elif seed is not None:
+            self.seed = seed
+            self.rng = np.random.default_rng(seed)
+
+        else:
+            raise ValueError("Must provide seed for np.random.default_rng()")
+            
         self.x_input = x
         self.y_input = y
         self.sample  = None
