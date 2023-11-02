@@ -1,10 +1,14 @@
 
-__all__ = ['bootstrap_resample', 'InverseCDFSampler', 'jackknife_resampling']
+__all__ = [
+    'bootstrap_resample', 
+    'InverseCDFSampler', 
+    'jackknife_resampling'
+    ]
 
 import numpy as np
 import scipy.interpolate as interpolate
 
-from utils import get_rng_from_seed
+from pyx.utils import get_rng_from_seed
 
 
 def bootstrap_resample(data, bootnum=100, num_samples=None, seed=None):
@@ -137,8 +141,8 @@ class InverseCDFSampler(object):
         self.y_input = yvals
         self.sample  = None
 
-        pdf_fnorm = np.sum(y)
-        self.cdf = np.cumsum(y / pdf_fnorm)
+        pdf_fnorm = np.sum(yvals)
+        self.cdf = np.cumsum(yvals / pdf_fnorm)
         self.inverse_cdf = interpolate.interp1d(self.cdf, self.x_input)
 
     def sample_n(self, n):

@@ -1,11 +1,9 @@
-from .params import Params
-from . import math_tools
-from . import print_tools
-from . import str_tools
-from . import path_tools
-from . import param_tools
+from . import cosmology
 from . import io
-from . import printing
+from . import maths
+from . import plots
+from . import sampling
 from . import utils
 
 from .__version__ import __version__
+__authors__ = ['Adam Batten (@abatten), ']

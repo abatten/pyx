@@ -5,14 +5,17 @@ A collection of various functions for creating plots.
 
 """
 
-__all__ = ['make_comoving_distance_axis', 'make_lookback_time_axis', 'pcolormesh2d']
+__all__ = [
+    'make_comoving_distance_axis', 
+    'make_lookback_time_axis', 
+    'pcolormesh2d'
+    ]
 
 import numpy as np
 import matplotlib.pyplot as plt
 import astropy.units as apu
-import astropy.constants as apc
 import astropy.cosmology as acosmo
-from cosmology import get_cosmology_from_name, z_to_cMpc, cMpc_to_z
+from pyx.cosmology import get_cosmology_from_name
 
 
 def make_lookback_time_axis(ax, cosmo='Planck18', z_range=None, major_tick_spacing=2, minor_tick_spacing=1):

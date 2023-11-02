@@ -5,7 +5,11 @@ A collection of various functions for doing cosmological calculations.
 
 """
 
-__all__ = ['cMpc_to_z', 'get_cosmology_from_name', 'scale_factor', 'z_to_cMpc',
+__all__ = [
+    'cMpc_to_z', 
+    'get_cosmology_from_name', 
+    'scale_factor', 
+    'z_to_cMpc',
 ]
 
 import numpy as np

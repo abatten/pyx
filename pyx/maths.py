@@ -5,20 +5,24 @@ A collection of various mathematical functions.
 
 """
 
-__all__ = ["angle_of_line_through_points", 
-           "bin_centres", 
-           "hist_pdf",
-           "linearly_interpolate_pdfs",
-           "linspace_angles",
-           "moving_mean",
-           "pdf_mean",
-           "pdf_percentile",
-           "pdf_std",
-           "pdf_var", 
-           "rebin1d",
-           "reshape_to_1D",
-           "sigma_pdf_percentiles",
-           ]
+__all__ = [
+    "angle_of_line_through_points", 
+    "bin_centres",
+    "deg2rad",
+    "hist_pdf",
+    "linearly_interpolate_pdfs",
+    "linspace_angles",
+    "moving_mean",
+    "pdf_mean",
+    "pdf_median",
+    "pdf_percentile"
+    "pdf_std",
+    "pdf_var",
+    "rad2deg", 
+    "rebin1d",
+    "reshape_to_1D",
+    "sigma_pdf_percentiles",
+    ]
 
 import numpy as np
 from scipy import interpolate, special
@@ -67,9 +71,7 @@ def angle_of_line_through_points(point, point2=(0.0, 0.0), axis='x', units='deg'
         return rad
 
     elif units.lower() in ['deg', 'degrees']:
-        deg = rad*180/np.pi
-        if deg < 0:
-            deg = 360 + deg
+        deg = rad2deg(rad)
         return deg
 
 
@@ -89,6 +91,29 @@ def bin_centres(bin_edges):
     
     """
     return bin_edges[:-1] + np.diff(bin_edges)/2
+
+def deg2rad(theta, wrap=False):
+    """
+    Converts an angle in degrees into radians.
+
+    Parameters
+    ----------
+    theta: float or np.ndarray
+        An angle or angle array in degrees.
+
+    wrap: bool, optional
+        If wrap=True, return a value between 0 and 2pi.
+        Default: False
+    
+    Returns
+    -------
+    rad: float or np.ndarray
+        The angle or angle array theta in radians.
+    """
+    rad = theta * np.pi / 180
+    if wrap:
+          rad % (2*np.pi)
+    return rad
 
 
 def hist_pdf(hist, bin_widths):
@@ -113,29 +138,33 @@ def hist_pdf(hist, bin_widths):
     if np.sum(hist) < 1e-16:
         pdf = np.zeros(len(hist))
     else:
-        pdf = hist/bin_widths/np.sum(hist)
+        pdf = hist / bin_widths / np.sum(hist)
     return pdf
 
 
 def linearly_interpolate_pdfs(sample, xvals, pdfs):
     """
-    Linearly interpolate between two probability density fuctions.
-
-    With 
-
+    Linearly interpolate between two probability density fuctions
+    (PDFs) that are associated with two scalars.
 
     Parameters
     ----------
     sample: float
+        A sample scalar to generate an interpolate PDF.
+        This sample value sould be between the xvals.
 
     xvals: (float, float)
-
+        Two scalars that are each associated with a PDF.
+    
     pdfs: (np.ndarray, np.ndarray) 
-
+        Two PDFs, with the first PDF associated with the first scalar,
+        and the second PDF with the second scalar.
+    
     Returns
     -------
     PDF: np.ndarray
-        The PDF at sample.
+        The interpolated PDF at the sample value.
+
     """
     x1, x2 = xvals
     pdf1, pdf2 = pdfs
@@ -143,7 +172,7 @@ def linearly_interpolate_pdfs(sample, xvals, pdfs):
     grad = (pdf2 - pdf1) / (x2 - x1)
     dist = sample - x1
 
-    return grad * dist + pdf1
+    return grad*dist + pdf1
 
 
 def linspace_angles(start, stop, num=50, unit='deg', **kwargs):
@@ -179,7 +208,7 @@ def linspace_angles(start, stop, num=50, unit='deg', **kwargs):
     if unit.lower() in ['degrees', 'deg']:
         rotation_angle = 360
     elif unit.lower() in ['radians', 'rad']:
-        rotation_angle = 2*np.pi
+        rotation_angle = 2 * np.pi
 
     if start < stop:
         samples = np.linspace(start, stop, num, **kwargs) % rotation_angle
@@ -257,6 +286,27 @@ def pdf_mean(x, pdf, dx=None):
     return np.sum(pdf * x * dx)
 
 
+def pdf_median(x, pdf):
+    """
+    Calculates the median of a PDF.
+
+    Parameters
+    ----------
+    x : np.ndarray
+        The x values.
+
+    pdf : np.ndarray
+        The value of the PDF at x.
+
+    Returns
+    -------
+    median: float
+        The median value (50% percentile) of the PDF.
+
+    """
+    return pdf_percentile(x, pdf, percentile=0.5)
+
+
 def pdf_percentile(x, pdf, percentile):
     """
     Calculates the x value that corresponds to a given percentile
@@ -271,7 +321,7 @@ def pdf_percentile(x, pdf, percentile):
         The value of the PDF at x.
 
     percentile : float
-        The percentile of the PDF.
+        The percentile of the PDF (range 0 - 1).
 
     Returns
     -------
@@ -345,6 +395,30 @@ def pdf_var(x, pdf, dx=None):
     return np.sum(pdf * dx * (x - mean)**2)
 
 
+def rad2deg(theta, wrap=False):
+    """
+    Converts an angle in radians into degrees.
+
+    Parameters
+    ----------
+    theta: float or np.ndarray
+        An angle or an array of angles in radians.
+
+    wrap: bool, optional
+        If wrap=True, return the values between 0 and 360.
+        Default: False
+    
+    Returns
+    -------
+    deg: float or np.ndarray
+        The angle or angle array theta in degrees.
+    """
+    deg = theta * 180 / np.pi
+    if wrap:
+          deg % (360)
+    return deg
+
+
 def rebin1d(array, bin_size):
     """
     Rebins 1D data into a smaller number of bins.
@@ -386,14 +460,12 @@ def rebin1d(array, bin_size):
 
     # Loop over each of the new bins
     for idx in range(new_size):
-
         # Calculate the start and end points for each new bin
         start_idx = idx * bin_size
         end_idx = start_idx + bin_size
-
         # Combine the bins between start_idx and end_idx
         new_array[idx] = np.sum(array[start_idx:end_idx])
-
+            
     return new_array
 
 
