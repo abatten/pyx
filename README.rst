@@ -15,14 +15,29 @@ Requirements
 
 - ``numpy``
 - ``scipy``
+- ``astropy``
 - ``matplotlib``
 
 
 Modules
 .......
 
-- ``pyx.math_tools``:
+- ``pyx.cosmology``: A collection of functions for performing cosmological calculations.
+        - ``from pyx import cosmology as pyxcosmo``
 
-- ``pyx.plot_tools``:
+- ``pyx.io``: A collection of functions for dealing with file input and output.
+        - ``from pyx import io as pyxio``
+
+- ``pyx.maths``: A collection of functions for doing mathematical operations.
+        - ``from pyx import maths as pyxmaths``
+
+- ``pyx.plots``: A collections of functions for generating or altering plots.
+        - ``from pyx import plots as pyxplots``
+
+- ``pyx.sampling``: A collection of Classes and functions for performing various sampling techniques.
+        - ``from pyx import sampling as pyxsampling``
+
+- ``pyx.utils``: A collection of various utility functions.
+        - ``from pyx import utils as pyxutils``
 
 
