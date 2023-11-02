@@ -12,7 +12,6 @@ __all__ = [
     'write_row',
     ]
 
-
 try:
     import h5py
     import_h5py = True
@@ -21,7 +20,6 @@ except ImportError:
 
 import numpy as np
 import yaml
-
 
 def dict_to_hdf5_attributes(item, attrs_dict):
     """

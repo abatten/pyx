@@ -239,7 +239,10 @@ def str2float(string, separator="p", prefix=None, suffix=None):
     # This line is a little funky but its a clever way to recombine
     # the two sides of the decimal.
     # e.g [25, 555] = 25 + 555/(10**3)
-    flt = int(values[0]) + int(values[1])/(10**len(values[1]))
+    if len(values) > 1:
+        flt = int(values[0]) + int(values[1])/(10**len(values[1]))
+    else:
+        flt = int(values[0])
     return flt
 
 
