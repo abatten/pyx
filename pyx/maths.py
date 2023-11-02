@@ -112,7 +112,7 @@ def deg2rad(theta, wrap=False):
     """
     rad = theta * np.pi / 180
     if wrap:
-          rad % (2*np.pi)
+          rad = rad % (2*np.pi)
     return rad
 
 
@@ -415,7 +415,7 @@ def rad2deg(theta, wrap=False):
     """
     deg = theta * 180 / np.pi
     if wrap:
-          deg % (360)
+          deg = deg % (360)
     return deg
 
 
