@@ -202,10 +202,10 @@ def scale_factor(redshift):
 
     Examples
     --------
-    >>> cosmology.a(1)
+    >>> cosmology.scale_factor(1)
     0.5
 
-    >>> cosmology.a(np.array([0, 1, 2, 3]))
+    >>> cosmology.scale_factor(np.array([0, 1, 2, 3]))
     array([1, 0.5, 0.3333333, 0.25])
 
     """

@@ -31,7 +31,7 @@ def files_with_stem(loc=".", prefix=None, suffix=None):
         The path to the directory containing the files.
         Default: "."
 
-   prefix: str, or None, optional
+    prefix: str, or None, optional
         The prefix of the files to find. If None,
         this will return all the files in the directory
         regardless of prefix        

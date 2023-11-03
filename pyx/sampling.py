@@ -2,7 +2,7 @@
 __all__ = [
     'bootstrap_resample', 
     'InverseCDFSampler', 
-    'jackknife_resampling'
+    'jackknife_resample'
     ]
 
 import numpy as np
