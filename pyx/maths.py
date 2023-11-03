@@ -237,17 +237,20 @@ def moving_mean(x, w, mode='full'):
         The width of the window.
     
     mode: {'full', 'valid', 'same'}, optional
-        'full': By default, mode is 'full'. This returns the moving 
-                average at each point of overlap, with an output shape
-                of (N+M-1,). At the end-points of the convolution, the 
-                window and dataset do not overlap completely, and 
-                boundary effects may be seen.
-        'same': Mode 'same' returns output of length max(M, N). 
-                Boundary effects are still visible.
-        'valid': Mode 'valid' returns output of length 
-                 max(M, N) - min(M, N) + 1. The moving average is only
-                 given for points where the window and data overlap
-                 completely.
+        'full': 
+            By default, mode is 'full'. This returns the moving 
+            average at each point of overlap, with an output shape
+            of (N+M-1,). At the end-points of the convolution, the 
+            window and dataset do not overlap completely, and 
+            boundary effects may be seen.
+        'same': 
+            Mode 'same' returns output of length max(M, N). 
+            Boundary effects are still visible.
+        'valid': 
+            Mode 'valid' returns output of length 
+            max(M, N) - min(M, N) + 1. The moving average is only
+            given for points where the window and data overlap
+            completely.
 
     Returns
     -------

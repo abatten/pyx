@@ -1,3 +1,12 @@
+"""
+SAMPLING
+--------
+A collection of various functions and classes for performing different types
+of sampling.
+
+"""
+
+
 
 __all__ = [
     'bootstrap_resample', 

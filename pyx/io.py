@@ -7,7 +7,7 @@ A collection of various functions for dealing with input and outputs.
 
 __all__ = [
     'dict_to_hdf5_attributes', 
-    'dict_to_hdf5_group'
+    'dict_to_hdf5_group',
     'load_yaml', 
     'write_row',
     ]
@@ -111,8 +111,6 @@ def write_row(output, data, col_width=16, decimals=4):
         The data that will be written to output. Each item will be
         written to a new column of the output. 
 
-    Optional
-    --------
     col_width: int, optional
         The width of the columns in number of characters. 
         Default: 16

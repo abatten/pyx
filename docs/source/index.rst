@@ -14,7 +14,6 @@ Welcome to pyx's documentation!
     :maxdepth: 2
     :caption: API Documentation
 
-    api/pyx
     api/pyx.cosmology
     api/pyx.io
     api/pyx.maths

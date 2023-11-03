@@ -69,7 +69,7 @@ def make_lookback_time_axis(ax, cosmo='Planck18', z_range=None, major_tick_spaci
     >>> ax.set_xlim(min(x), max(x))
     >>> ax2 = pyxplots.make_lookback_time_axis(ax)
     >>> ax.set_xlabel('Redshift')
-    >>> ax2.set_xlabel('comoving distance (Gyr)')
+    >>> ax2.set_xlabel('Lookback Time (Gyr)')
 
     """
     ax2 = ax.twiny()
