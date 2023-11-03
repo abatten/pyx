@@ -18,11 +18,11 @@
 # -- Project information -----------------------------------------------------
 
 project = 'pyx'
-copyright = '2021, Adam Batten'
+copyright = '2023, Adam Batten'
 author = 'Adam Batten'
 
 # The full version, including alpha/beta/rc tags
-release = '0.0.1'
+release = '0.1.1'
 
 
 # -- General configuration ---------------------------------------------------
@@ -59,8 +59,6 @@ napoleon_custom_sections = ['Optional']
 templates_path = ['_templates']
 
 
-
-
 source_suffix = ".rst"
 master_doc = "index"
 
@@ -68,8 +66,6 @@ master_doc = "index"
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = []
-
-
 
 
 # -- Options for HTML output -------------------------------------------------
