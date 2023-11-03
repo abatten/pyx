@@ -15,6 +15,10 @@ Welcome to pyx's documentation!
     :caption: API Documentation
 
     api/pyx
+    api/pyx.cosmology
     api/pyx.io
-    api/pyx.printing
+    api/pyx.maths
+    api/pyx.plots
+    api/pyx.sampling
+    api/pyx.utils
 
