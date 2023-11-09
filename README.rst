@@ -25,6 +25,9 @@ Modules
 - ``pyx.cosmology``: A collection of functions for performing cosmological calculations.
         - ``from pyx import cosmology as pyxcosmo``
 
+- ``pyx.fit``: A collection of functions for performing parameter fitting.
+        - ``from pyx import cosmology as pyxfit``
+
 - ``pyx.io``: A collection of functions for dealing with file input and output.
         - ``from pyx import io as pyxio``
 
