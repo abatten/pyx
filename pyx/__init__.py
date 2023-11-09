@@ -1,4 +1,5 @@
 from . import cosmology
+from . import fit
 from . import io
 from . import maths
 from . import plots
