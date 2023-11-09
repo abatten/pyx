@@ -29,10 +29,9 @@ def dict_to_hdf5_attributes(item, attrs_dict):
 
     Parameters
     ----------
-    item: A dataset or group from an open HDF5 file (h5py._hl.files.File)
+    item : A dataset or group from an open HDF5 file (h5py._hl.files.File)
         The dataset or group to attach the attributes.
-
-    attrs_dict: dict
+    attrs_dict : dict
         The attributes of the data set or group. The key is the name 
         of the attribute.
 
@@ -56,13 +55,11 @@ def dict_to_hdf5_group(hdf5_file, attrs_dict, group_name):
 
     Parameters
     ----------
-    hdf5_file: An open HDF5 file (h5py._hl.files.File)
+    hdf5_file : An open HDF5 file (h5py._hl.files.File)
         The open HDF5 file to add the new group into
-
-    attrs_dict: dict
+    attrs_dict : dict
         The attributes of the new group.
-
-    group_name: str
+    group_name : str
         The name of the new group.
 
     """
@@ -88,7 +85,7 @@ def load_yaml(path):
 
     Returns
     -------
-    dict:
+    dict :
         A dictionary containing all the data in the YAML.
 
     """
@@ -104,18 +101,15 @@ def write_row(output, data, col_width=16, decimals=4):
 
     Parameters
     ----------
-    output: TextIOWrapper
+    output : TextIOWrapper
         An open file with write permissions.
-
-    data: list or 1D np.ndarray
+    data : list or 1D np.ndarray
         The data that will be written to output. Each item will be
         written to a new column of the output. 
-
-    col_width: int, optional
+    col_width : int, optional
         The width of the columns in number of characters. 
         Default: 16
-    
-    decimals: int, optional
+    decimals : int, optional
         The decimal point precision for floating point and integers.
         Default: 4
 

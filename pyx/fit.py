@@ -19,35 +19,30 @@ def fit_poly_least_squares(xvals, yvals, yerr, order=1):
 
     Parameters
     ----------
-    xvals: np.ndarray
+    xvals : np.ndarray
         The x-coordinates of the N sample points.
-
-    yvals: np.ndarray
+    yvals : np.ndarray
         The y-coordinates of the N sample points.
-
-    yerr: np.ndarray
+    yerr : np.ndarray
         The y uncertainties of the N sample points.
-
-    order: int, optional
+    order : int, optional
         Order of the fitting polynomial.
         Default: 1
     
     Returns
     -------
-    fit: np.ndarray
+    fit : np.ndarray
         The coefficients of the best fitting polynomial
         from the lowest order term to the highest.
-    
-    uncerts: np.ndarray
+    uncerts : np.ndarray
         The uncertaintys on the coefficients of the best fitting
         polynomial. Ordered from the lowest order term to the highest.
-        
-    chisq: float
+    chisq : float
         The chi squared value of the best fit.
-
-    redchisq: float
+    redchisq : float
         The reduced chi square value of the best fit.
         redchisq = chisq / (N - order - 1)
+
     """
 
     # Vandermonde matrix
@@ -74,33 +69,29 @@ def fit_straight_line_least_squares(xvals, yvals, yerr):
 
     Parameters
     ----------
-    xvals: np.ndarray
+    xvals : np.ndarray
         The x-coordinates of the N sample points.
-
-    yvals: np.ndarray
+    yvals : np.ndarray
         The y-coordinates of the N sample points.
-
-    yerr: np.ndarray
+    yerr : np.ndarray
         The y uncertainties of the N sample points.
     
     Returns
     -------
-    fit: np.ndarray
+    fit : np.ndarray
         The coefficients of the best fitting polynomial
         from the lowest order term to the highest.
         i.e. [incercept, slope].
-    
-    uncerts: np.ndarray
+    uncerts : np.ndarray
         The uncertaintys on the coefficients of the best fitting
         polynomial. Ordered from the lowest order term to the highest.
         i.e. [incercept, slope].
-
-    chisq: float
+    chisq : float
         The chi squared value of the best fit.
-
-    redchisq: float
+    redchisq : float
         The reduced chi square value of the best fit.
         redchisq = chisq / (N - 2)
+
     """
     return fit_poly_least_squares(xvals, yvals, yerr, order=1)
 
@@ -112,29 +103,24 @@ def calculate_poly_chisq(fit, xvals, yvals, yerr, order=1):
     
     Parameters
     ----------
-    fit: 1 x N array
+    fit : 1 x N array
         The best-fit coefficients ordered from lowest to
         highest order terms.
-
-    xvals: np.ndarray
+    xvals : np.ndarray
         The x-coordinates of the N sample points.
-
-    yvals: np.ndarray
+    yvals : np.ndarray
         The y-coordinates of the N sample points.
-
-    yerr: np.ndarray
+    yerr : np.ndarray
         The y uncertainties of the N sample points.
-
-    order: int, optional
+    order : int, optional
         Order of the best fitting fitting polynomial.
         Default: 1 
 
     Returns
     -------
-    chisq: float
+    chisq : float
         The chi-squared value.
-
-    redchisq: float
+    redchisq : float
         The reduced chi-squared value.
         reduced chi = chi / (N - order - 1)
     

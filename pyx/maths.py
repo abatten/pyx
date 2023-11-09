@@ -35,24 +35,21 @@ def angle_of_line_through_points(point, point2=(0.0, 0.0), axis='x', units='deg'
 
     Parameters
     ----------
-    point: (float, float)
+    point : (float, float)
         The point.
-
-    point2: (float, float), optional
+    point2 : (float, float), optional
         A second point to define the line.
         Default: (0.0, 0.0)
-
-    axis: {'x', 'y'}, optional
+    axis : {'x', 'y'}, optional
         The axis to calculate the angle to.
         Default: 'x'
-    
-    unit: {'deg', 'rad'}, optional
+    unit : {'deg', 'rad'}, optional
         The unit that the angles are in.
         Default: 'deg'
 
     Returns
     -------
-    angle: float
+    angle : float
         The angle to the axis.
 
     """
@@ -81,12 +78,12 @@ def bin_centres(bin_edges):
 
     Parameters
     ----------
-    bin_edges: array-like
+    bin_edges : array-like
         An array of bin edges on length N.
 
     Returns
     -------
-    centres: np.ndarray
+    centres : np.ndarray
         An array of bin centers of length N-1.
     
     """
@@ -98,16 +95,15 @@ def deg2rad(theta, wrap=False):
 
     Parameters
     ----------
-    theta: float or np.ndarray
+    theta : float or np.ndarray
         An angle or angle array in degrees.
-
-    wrap: bool, optional
+    wrap : bool, optional
         If wrap=True, return a value between 0 and 2pi.
         Default: False
     
     Returns
     -------
-    rad: float or np.ndarray
+    rad : float or np.ndarray
         The angle or angle array theta in radians.
     """
     rad = theta * np.pi / 180
@@ -122,16 +118,15 @@ def hist_pdf(hist, bin_widths):
 
     Parameters
     ----------
-    hist: np.ndarray
+    hist : np.ndarray
         The histogram array of length N.
-
-    bin_widths: np.ndarray
+    bin_widths : np.ndarray
         An array of length N containing the width of each bin.
         This can be calculated with np.diff(edges).
 
     Returns
     -------
-    pdf: np.ndarray
+    pdf : np.ndarray
         The probability density function.
 
     """
@@ -149,20 +144,18 @@ def linearly_interpolate_pdfs(sample, xvals, pdfs):
 
     Parameters
     ----------
-    sample: float
+    sample : float
         A sample scalar to generate an interpolate PDF.
         This sample value sould be between the xvals.
-
-    xvals: (float, float)
+    xvals : (float, float)
         Two scalars that are each associated with a PDF.
-    
-    pdfs: (np.ndarray, np.ndarray) 
+    pdfs : (np.ndarray, np.ndarray) 
         Two PDFs, with the first PDF associated with the first scalar,
         and the second PDF with the second scalar.
     
     Returns
     -------
-    PDF: np.ndarray
+    interp_pdf : np.ndarray
         The interpolated PDF at the sample value.
 
     """
@@ -184,23 +177,20 @@ def linspace_angles(start, stop, num=50, unit='deg', **kwargs):
 
     Parameters
     ----------
-    start: float
+    start : float
         The starting value of the sequence.
-
-    stop: float
+    stop : float
         The end value of the sequence.
-
-    num: int, optional
+    num : int, optional
         The number of samples to generate. Must be non-negative.
         Default: 50
-
-    unit: {'deg', 'rad'}, optional
+    unit : {'deg', 'rad'}, optional
         The unit that the angles are in.
         Default: 'deg'
 
     Returns
     -------
-    samples: np.ndarray
+    samples : np.ndarray
         There are num equally spaced angle samples in the closed interval [start, stop]
 
     """
@@ -230,23 +220,21 @@ def moving_mean(x, w, mode='full'):
 
     Parameters
     ----------
-    x: np.ndarray or array-like
+    x : np.ndarray or array-like
         The dataset
-
-    w: int
+    w : int
         The width of the window.
-    
-    mode: {'full', 'valid', 'same'}, optional
-        'full': 
+    mode : {'full', 'valid', 'same'}, optional
+        'full' : 
             By default, mode is 'full'. This returns the moving 
             average at each point of overlap, with an output shape
             of (N+M-1,). At the end-points of the convolution, the 
             window and dataset do not overlap completely, and 
             boundary effects may be seen.
-        'same': 
+        'same' : 
             Mode 'same' returns output of length max(M, N). 
             Boundary effects are still visible.
-        'valid': 
+        'valid' : 
             Mode 'valid' returns output of length 
             max(M, N) - min(M, N) + 1. The moving average is only
             given for points where the window and data overlap
@@ -254,7 +242,7 @@ def moving_mean(x, w, mode='full'):
 
     Returns
     -------
-    moving_avg: np.ndarray
+    moving_avg : np.ndarray
         The moving average of the array x within the window.
 
     """
@@ -269,10 +257,8 @@ def pdf_mean(x, pdf, dx=None):
     ----------
     x : np.ndarray
         The x values.
-
     pdf : np.ndarray
         The value of the PDF at x.
-
     dx : np.ndarray or None, optional
         The spacing between the x bins. 
         If `None`, then the bins are assumed to be linearly spaced.
@@ -297,13 +283,12 @@ def pdf_median(x, pdf):
     ----------
     x : np.ndarray
         The x values.
-
     pdf : np.ndarray
         The value of the PDF at x.
 
     Returns
     -------
-    median: float
+    median : float
         The median value (50% percentile) of the PDF.
 
     """
@@ -319,10 +304,8 @@ def pdf_percentile(x, pdf, percentile):
     ----------
     x : np.ndarray
         The x values of the PDF.
-
     pdf : np.ndarray
         The value of the PDF at x.
-
     percentile : float
         The percentile of the PDF (range 0 - 1).
 
@@ -347,10 +330,8 @@ def pdf_std(x, pdf, dx=None):
     ----------
     x : np.ndarray
         The x values.
-
     pdf : np.ndarray
         The value of the PDF at x.
-
     dx : np.ndarray or None, optional
         The spacing between the x bins. 
         If `None`, then the bins are assumed to be linearly spaced.
@@ -376,10 +357,8 @@ def pdf_var(x, pdf, dx=None):
     ----------
     x : np.ndarray
         The x values.
-
     pdf : np.ndarray
         The value of the PDF at x.
-
     dx : np.ndarray or None, optional
         The spacing between the x bins. 
         If `None`, then the bins are assumed to be linearly spaced.
@@ -404,17 +383,17 @@ def rad2deg(theta, wrap=False):
 
     Parameters
     ----------
-    theta: float or np.ndarray
+    theta : float or np.ndarray
         An angle or an array of angles in radians.
-
-    wrap: bool, optional
+    wrap : bool, optional
         If wrap=True, return the values between 0 and 360.
         Default: False
     
     Returns
     -------
-    deg: float or np.ndarray
+    deg : float or np.ndarray
         The angle or angle array theta in degrees.
+
     """
     deg = theta * 180 / np.pi
     if wrap:
@@ -428,17 +407,16 @@ def rebin1d(array, bin_size):
 
     Parameters
     ----------
-    array: array-like
+    array : array-like
         The 1D array of length N.
-
-    bin_size: int
+    bin_size : int
         The number of bins to be combined into new bins.
         If bin_size is not a divisor of N, then the remaining
         bins will be left off.
 
     Returns
     -------
-    new_arrays: array-like
+    new_array : array-like
         The of new rebined array of length int(N/bin_size).
 
     """
@@ -478,12 +456,12 @@ def reshape_to_1D(array):
 
     Parameters
     ----------
-    array: numpy.ndarray
+    array : numpy.ndarray
         An N x M x ... array.
 
     Returns
     -------
-    1D array: np.ndarray
+    array1d : np.ndarray
         The output 1D array of length N x M x ..
 
     """
@@ -498,14 +476,14 @@ def sigma_pdf_percentiles(sigma):
 
     Parameters
     ----------
-    sigma: float
+    sigma : float
         The standard deviation to calculate a percentile.
 
     Returns
     -------
-    Lower: float
+    Lower : float
         The lower percentile.
-    Higher: float
+    Higher : float
         The higher percentile.
 
     Example

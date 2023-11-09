@@ -18,7 +18,7 @@ import astropy.cosmology as acosmo
 from pyx.cosmology import get_cosmology_from_name
 
 
-def make_lookback_time_axis(ax, cosmo='Planck18', z_range=None, major_tick_spacing=2, minor_tick_spacing=1):
+def make_lookback_time_axis(ax, cosmology='Planck18', z_range=None, major_tick_spacing=2, minor_tick_spacing=1):
     """
     Creates a comoving distance axis on the top axis of a plot.
 
@@ -31,30 +31,26 @@ def make_lookback_time_axis(ax, cosmo='Planck18', z_range=None, major_tick_spaci
 
     Parameters
     ----------
-    ax: plt.Axes
+    ax : plt.Axes
         The matplotlib axis to draw the comoving distance axis. This
         axis should have a redshift x-axis.
-
-    cosmo: str or astropy.cosmology.FLRW
+    cosmology : str or astropy.cosmology.FLRW
         The cosmology to assume whilst calculating comoving distance.
         Default: 'Planck18'
-
-    z_range:
+    z_range : None or (float, float), optional
         The redshift range to calculate comoving distance for. If None, 
         z_range will be the range of the redshift axis.
         Default: None
-
-    major_tick_spacing: int, optional
+    major_tick_spacing : int, optional
         The major tick spacing in units of Gyr.
         Default: 2
-
-    minor_tick_spacing: int, optional
+    minor_tick_spacing : int, optional
         The minor tick spacing in units of Gyr.
         Default: 1
 
     Returns
     -------
-    ax2: plt.Axes
+    ax2 : plt.Axes
         The matplotlib comoving distance axis.
 
     Example
@@ -74,10 +70,10 @@ def make_lookback_time_axis(ax, cosmo='Planck18', z_range=None, major_tick_spaci
     """
     ax2 = ax.twiny()
 
-    if cosmo is None:
-        cosmo = get_cosmology_from_name("Planck18")
+    if cosmology is None:
+        cosmology = get_cosmology_from_name("Planck18")
     else: 
-        cosmo = get_cosmology_from_name(cosmo)
+        cosmology = get_cosmology_from_name(cosmology)
 
     # If the redshift range is not provided calculate from axis.
     if z_range is not None:
@@ -86,8 +82,8 @@ def make_lookback_time_axis(ax, cosmo='Planck18', z_range=None, major_tick_spaci
         tick_locs = ax.xaxis.get_majorticklocs()
         z_min, z_max = tick_locs[0], tick_locs[-1]
 
-    lb_time_min = cosmo.lookback_time(z_min).value
-    lb_time_max = cosmo.lookback_time(z_max).value
+    lb_time_min = cosmology.lookback_time(z_min).value
+    lb_time_max = cosmology.lookback_time(z_max).value
 
     lb_time_max_r = np.floor(lb_time_max / minor_tick_spacing) * minor_tick_spacing
     lb_time_min_r = np.ceil(lb_time_min / minor_tick_spacing) * minor_tick_spacing
@@ -109,7 +105,7 @@ def make_lookback_time_axis(ax, cosmo='Planck18', z_range=None, major_tick_spaci
         if label < 0.01: # If Lookbacktime is too small -> Redshift = 0
             major_tick_loc[idx] = 0
         else:
-            z_label = acosmo.z_at_value(cosmo.lookback_time, apu.Gyr * label)
+            z_label = acosmo.z_at_value(cosmology.lookback_time, apu.Gyr * label)
             # This correctly accounts for if the min _redshift > 0.
             major_tick_loc[idx] = (z_label - z_min) / (z_max - z_min)
 
@@ -117,7 +113,7 @@ def make_lookback_time_axis(ax, cosmo='Planck18', z_range=None, major_tick_spaci
         if label < 0.01:
             minor_tick_loc[idx] = 0
         else:
-            z_label = acosmo.z_at_value(cosmo.lookback_time, apu.Gyr * label)
+            z_label = acosmo.z_at_value(cosmology.lookback_time, apu.Gyr * label)
             minor_tick_loc[idx] = (z_label - z_min) / (z_max - z_min)
 
     # Check if any tick_loc is larger than 1.0 and delete it if so:
@@ -144,7 +140,7 @@ def make_lookback_time_axis(ax, cosmo='Planck18', z_range=None, major_tick_spaci
     return ax2
 
 
-def make_comoving_distance_axis(ax, cosmo='Planck18', z_range=None,
+def make_comoving_distance_axis(ax, cosmology='Planck18', z_range=None,
     minor_tick_spacing=500, major_tick_spacing=2000):
     """
     Creates a comoving distance axis on the top axis of a plot.
@@ -158,30 +154,26 @@ def make_comoving_distance_axis(ax, cosmo='Planck18', z_range=None,
 
     Parameters
     ----------
-    ax: plt.Axes
+    ax : plt.Axes
         The matplotlib axis to draw the comoving distance axis. This
         axis should have a redshift x-axis.
-
-    cosmo: str or astropy.cosmology.FLRW
+    cosmology : str or astropy.cosmology.FLRW
         The cosmology to assume whilst calculating comoving distance.
         Default: 'Planck18'
-
-    z_range:
+    z_range : None or (float, float), optional
         The redshift range to calculate comoving distance for. If None, 
         z_range will be the range of the redshift axis.
         Default: None
-
-    major_tick_spacing: int, optional
+    major_tick_spacing : int, optional
         The major tick spacing in units of cMpc.
         Default: 2
-
-    minor_tick_spacing: int, optional
+    minor_tick_spacing : int, optional
         The minor tick spacing in units of cMpc.
         Default: 1
 
     Returns
     -------
-    ax2: plt.Axes
+    ax2 : plt.Axes
         The matplotlib comoving distance axis.
 
     Example
@@ -201,10 +193,10 @@ def make_comoving_distance_axis(ax, cosmo='Planck18', z_range=None,
     """
     ax2 = ax.twiny()
 
-    if cosmo is None:
-        cosmo = get_cosmology_from_name("Planck18")
+    if cosmology is None:
+        cosmology = get_cosmology_from_name("Planck18")
     else: 
-        cosmo = get_cosmology_from_name(cosmo)
+        cosmology = get_cosmology_from_name(cosmology)
 
     # If the redshift range is not provided calculate from axis.
     if z_range is not None:
@@ -213,8 +205,8 @@ def make_comoving_distance_axis(ax, cosmo='Planck18', z_range=None,
         tick_locs = ax.xaxis.get_majorticklocs()
         z_min, z_max = tick_locs[0], tick_locs[-1]
 
-    dist_min = cosmo.comoving_distance(z_min).value
-    dist_max = cosmo.comoving_distance(z_max).value
+    dist_min = cosmology.comoving_distance(z_min).value
+    dist_max = cosmology.comoving_distance(z_max).value
 
     # Round the min/max distances based on tick_spacing
     dist_max_r = np.floor(dist_max / minor_tick_spacing) * minor_tick_spacing
@@ -244,7 +236,7 @@ def make_comoving_distance_axis(ax, cosmo='Planck18', z_range=None,
         if label < 0.01: # If Comoving Distance is too small -> Redshift = 0
             major_tick_loc[idx] = 0
         else:
-            z_label = acosmo.z_at_value(cosmo.comoving_distance, apu.Mpc * label)
+            z_label = acosmo.z_at_value(cosmology.comoving_distance, apu.Mpc * label)
             # This correctly accounts for if the min _redshift > 0.
             major_tick_loc[idx] = (z_label - z_min) / (z_max - z_min)
 
@@ -252,7 +244,7 @@ def make_comoving_distance_axis(ax, cosmo='Planck18', z_range=None,
         if label < 0.01:
             minor_tick_loc[idx] = 0
         else:
-            z_label = acosmo.z_at_value(cosmo.comoving_distance, apu.Mpc * label)
+            z_label = acosmo.z_at_value(cosmology.comoving_distance, apu.Mpc * label)
             minor_tick_loc[idx] = (z_label - z_min) / (z_max - z_min)
 
     # Check if any tick_loc is larger than 1.0 and delete it if so:
@@ -293,19 +285,21 @@ def pcolormesh2d(data, xvals=None, yvals=None, extents=None, ax=None,
 
     Parameters
     ----------
-    data:
+    data :
 
-    xvals: numpy.ndarray, optional
+    xvals : numpy.ndarray, optional
 
-    yvals: numpy.ndarray, optional
+    yvals : numpy.ndarray, optional
 
-    extents: (xmin, xmax, ymin, ymax), optional
+    extents : (xmin, xmax, ymin, ymax), optional
 
-    passed_ax:
+    passed_ax : plt.Axes or None, optional
+        If passed an an axis, the plotmis made on that axis instead.
+        Default: None
 
     Returns
     -------
-    im: matplotlib.collections.QuadMesh
+    im : matplotlib.collections.QuadMesh
         
     Examples
     --------

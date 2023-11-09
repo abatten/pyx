@@ -27,23 +27,21 @@ def files_with_stem(loc=".", prefix=None, suffix=None):
 
     Parameters
     ----------
-    loc: str, optional
+    loc : str, optional
         The path to the directory containing the files.
         Default: "."
-
-    prefix: str, or None, optional
+    prefix : str, or None, optional
         The prefix of the files to find. If None,
         this will return all the files in the directory
         regardless of prefix        
-
-    suffix: str, or None, optional
+    suffix : str, or None, optional
         The suffix of the files to find. If None,
         this will return all the files in the directory
         regardless of suffix.
 
     Returns
     -------
-    paths: list
+    paths : list
         A list of paths to all files in a directory.
 
     """
@@ -70,17 +68,16 @@ def files_with_suffix(loc=".", suffix=None):
 
     Parameters
     ----------
-    loc: str, optional
+    loc : str, optional
         The path to the directory containing the files.
         Default: "."
-
-    suffix: str, or None, optional
+    suffix : str, or None, optional
         The suffix of the files to find. If None,
         this will return all the files in the directory.
 
     Returns
     -------
-    paths: list
+    paths : list
         A list of paths to all files in a directory.
     """
     return files_with_stem(loc=loc, suffix=suffix)
@@ -93,17 +90,16 @@ def files_with_prefix(loc=".", prefix=None):
 
     Parameters
     ----------
-    loc: str, optional
+    loc : str, optional
         The path to the directory containing the files.
         Default: "."
-
-    prefix: str, or None, optional
+    prefix : str, or None, optional
         The prefix of the files to find. If None,
         this will return all the files in the directory.
 
     Returns
     -------
-    paths: list
+    paths : list
         A list of paths to all files in a directory with the prefix.
 
     """
@@ -120,28 +116,24 @@ def float2str(flt, separator=".", precision=None, prefix=None, suffix=None):
 
     Parameters
     ----------
-    flt: float
+    flt : float
         The floating point number
-    
-    separator: string
+    separator : str
         The symbol that will replace the decimal point in the float.
         Default: "."
-
-    precision: int or None
+    precision : int or None
         The number of decimal places of the float to use in the string.
         Default: None
-
-    prefix: string or None
+    prefix : string or None
         Characters that are to appear at the beginning of the output.
         Default: None
-
-    suffix: string or None
+    suffix : string or None
         Characters that are to appear at the end of the output.
         Default: None
 
     Returns
     -------
-    string: str
+    string : str
         A string representation of the floating point number.
 
     Examples:
@@ -195,24 +187,21 @@ def str2float(string, separator="p", prefix=None, suffix=None):
 
     Parameters
     ----------
-    string: str
+    string : str
         The string containing the endoded float.
-    
-    separator: string
+    separator : string
         The symbol that had replaced the decimal point in the float.
         Default: "p"
-
-    prefix: string or None
+    prefix : string or None
         Characters that appear at the beginning of the string.
         Default: None
-
-    suffix: string or None
+    suffix : string or None
         Characters that appear at the end of the string.
         Default: None
 
     Returns
     -------
-    flt: float
+    flt : float
         A float extracted from the string representation.
 
     Examples:
@@ -251,14 +240,14 @@ def get_rng_from_seed(seed):
     """
     Parameters
     ----------
-    seed: None or int
+    seed : None or int
         The random seed that will be used to generate the numpy
         default_rng(). If None, a random seed will be used.
         Default: None
 
     Returns
     -------
-    rng: np.random.default_rng
+    rng : np.random.default_rng
 
     """
     if seed is None:

@@ -25,14 +25,14 @@ def get_cosmology_from_name(cosmology):
 
     Parameters
     ----------
-    cosmology: string or astropy.cosmology.core.FLRW
+    cosmology : string or astropy.cosmology.core.FLRW
         The cosmology to obtain. This can either be a string of the
         cosmology keyword used in astropy (e.g 'Planck13' or 'WMAP7')
         or an instance of an astropy.cosmology.
 
     Returns
     -------
-    cosmo: astropy.cosmology.core.FLRW
+    cosmo : astropy.cosmology.core.FLRW
         An astropy cosmology.
 
     """
@@ -71,10 +71,9 @@ def z_to_cMpc(redshift, cosmology='Planck18'):
 
     Parameters
     ----------
-    redshift: array-like, shape (N, )
+    redshift : array-like, shape (N, )
         The redshift values. Must be 1D or scalar.
-
-    cosmology: string or astropy.cosmology.core.FLRW
+    cosmology : string or astropy.cosmology.core.FLRW
         The cosmology used to calculate distance. This can either be a
         string of the cosmology keyword used in astropy (e.g 'Planck13'
         or 'WMAP7') or an instance of an astropy.cosmology.
@@ -82,7 +81,7 @@ def z_to_cMpc(redshift, cosmology='Planck18'):
 
     Returns
     -------
-    distance: astropy.unit.quantity.Quantity
+    distance : astropy.unit.quantity.Quantity
         The distance to a redshift in comoving Mpc.
 
     Examples
@@ -120,10 +119,9 @@ def cMpc_to_z(cMpc, cosmology="Planck18"):
 
     Parameters
     ----------
-    cMpc: array-like, shape (N, )
+    cMpc : array-like, shape (N, )
         The distance values. Must be 1D or scalar.
-
-    cosmology: string or astropy.cosmology.core.FLRW
+    cosmology : string or astropy.cosmology.core.FLRW
         The cosmology used to calculate distance. This can either be a
         string of the cosmology keyword used in astropy (e.g 'Planck13'
         or 'WMAP7') or an instance of an astropy.cosmology.
@@ -131,7 +129,7 @@ def cMpc_to_z(cMpc, cosmology="Planck18"):
 
     Returns
     -------
-    redshift: astropy.unit.Quantity
+    redshift : astropy.unit.Quantity
         The redshift to the distance.
 
     Examples
@@ -184,6 +182,7 @@ def cMpc_to_z(cMpc, cosmology="Planck18"):
 
     return redshift * acu.redshift
 
+
 def scale_factor(redshift):
     """
     Calculates the scale factor, a, at a given redshift.
@@ -192,12 +191,12 @@ def scale_factor(redshift):
 
     Parameters
     ----------
-    redshift: array-like
+    redshift : array-like
         The redshift values.
 
     Returns
     -------
-    a: array-like
+    a : array-like
         The scale factor at the given redshift.
 
     Examples

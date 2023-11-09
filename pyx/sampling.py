@@ -26,26 +26,23 @@ def bootstrap_resample(data, bootnum=100, num_samples=None, seed=None):
 
     Parameters
     ----------
-    data: array-like
+    data : array-like
         An array of length N
-
-    bootnum: int, optional
+    bootnum : int, optional
         The number of bootstrap resamples. 
         Default: 100
-
-    num_samples: None or int, optional
+    num_samples : None or int, optional
         The number of samples in each bootstrap resample. If None
         num_samples is equal to the length of data.
         Default: 100
-    
-    seed: None or int, optional
+    seed : None or int, optional
         The random seed that will be used to generate the numpy
         default_rng(). If None, a random seed will be used.
         Default: None
 
     Returns
     -------
-    boot:
+    boot :
         An num_samples x bootnum array.
 
     Example
@@ -84,12 +81,12 @@ def jackknife_resample(data):
 
     Parameters
     ----------
-    data: array-like
+    data : array-like
         An array of length N.
 
     Returns
     -------
-    resamples: np.ndarray
+    resamples : np.ndarray
         An N x N-1 array. Where the i-th row is the i-th jackknife sample
         with the i-th data point deleted. 
 
@@ -123,13 +120,11 @@ class InverseCDFSampler(object):
 
     Parameters
     ----------
-    xvals: array-like
+    xvals : array-like
         The x values.
-
-    yvals: array-like
+    yvals : array-like
         The y values of the distribution.
-
-    seed: None or int, optional
+    seed : None or int, optional
         The random seed that will be used to generate the numpy
         default_rng(). If None, a random seed will be used.
         Default: None
@@ -161,12 +156,12 @@ class InverseCDFSampler(object):
 
         Parameters
         ----------
-        n: int
+        n : int
             The number of random samples to generate.
 
         Returns
         -------
-        samples: np.ndarray
+        samples : np.ndarray
             The samples array of length n.
 
         """
