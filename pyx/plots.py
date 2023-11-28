@@ -6,16 +6,47 @@ A collection of various functions for creating plots.
 """
 
 __all__ = [
+    'load_stylesheet',
     'make_comoving_distance_axis', 
     'make_lookback_time_axis', 
     'pcolormesh2d'
     ]
+
+import os
+from glob import glob
 
 import numpy as np
 import matplotlib.pyplot as plt
 import astropy.units as apu
 import astropy.cosmology as acosmo
 from pyx.cosmology import get_cosmology_from_name
+
+
+def _available_stylesheets():
+    style_sheet_location = os.path.join(os.path.dirname(__file__), "mpl_style_sheets")
+    files = sorted(glob(os.path.join(style_sheet_location, "*.mplstyle")))
+    available_stylesheets = [f.split(".")[0].split('/')[-1] for f in files]
+    return available_stylesheets
+
+
+def load_stylesheet(stylename='default'):
+    """
+    Load a custom style sheet.
+
+    Parameters
+    ----------
+    stylename: str
+        The name of the style sheet to load.
+        Default: 'default'
+    
+    """
+    if stylename in _available_stylesheets():
+        stylename = f"{stylename}.mplstyle"
+        path_to_style = os.path.join(os.path.dirname(__file__), "mpl_style_sheets", stylename)
+        plt.style.use(path_to_style)
+    else:
+        msg = f"'{stylename}' not in list of available styles: {_available_stylesheets()}"
+        raise ValueError(msg)
 
 
 def make_lookback_time_axis(ax, cosmology='Planck18', z_range=None, major_tick_spacing=2, minor_tick_spacing=1):
