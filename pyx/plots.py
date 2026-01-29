@@ -10,6 +10,8 @@ __all__ = [
     'make_comoving_distance_axis', 
     'make_lookback_time_axis', 
     'pcolormesh2d'
+    'load_color_palette',
+    'list_color_palettes',
     ]
 
 import os
@@ -19,6 +21,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import astropy.units as apu
 import astropy.cosmology as acosmo
+from cycler import cycler
 from pyx.cosmology import get_cosmology_from_name
 
 
@@ -373,3 +376,146 @@ def pcolormesh2d(data, xvals=None, yvals=None, extents=None, ax=None,
         im = ax.pcolormesh(data, *args, **kwargs)
 
     return im
+
+
+# Palette definitions with metadata
+PALETTES = {
+    "default": {
+        "colors": ['#0C5DA5', '#00B945', '#FF9500', '#FF2C00', 
+                   '#845B97', '#474747', '#9E9E9E'],
+        "n_colors": 7,
+        "description": "Custom default palette with good contrast",
+    },
+    
+    "okabe_ito": {
+        "colors": ['#000000', '#E69F00', '#56B4E9', '#009E73', 
+                   '#F0E442', '#0072B2', '#D55E00', '#CC79A7'],
+        "n_colors": 8,
+        "description": "Colorblind-friendly palette by Okabe and Ito",
+    },
+    
+    "wong": {
+        "colors": ['#000000', '#E69F00', '#56B4E9', '#009E73', 
+                   '#F0E442', '#0072B2', '#D55E00', '#CC79A7'],
+        "n_colors": 8,
+        "description": "Bang Wong's Nature Methods colorblind-safe palette",
+    },
+    
+    "tol_bright": {
+        "colors": ['#4477AA', '#EE6677', '#228833', '#CCBB44', 
+                   '#66CCEE', '#AA3377', '#BBBBBB'],
+        "n_colors": 7,
+        "description": "Paul Tol's bright qualitative scheme",
+    },
+    
+    "tol_muted": {
+        "colors": ['#332288', '#88CCEE', '#44AA99', '#117733', '#999933', 
+                   '#DDCC77', '#CC6677', '#882255', '#AA4499'],
+        "n_colors": 9,
+        "description": "Paul Tol's muted qualitative scheme",
+    },
+    
+    "tol_vibrant": {
+        "colors": ['#EE7733', '#0077BB', '#33BBEE', '#EE3377', 
+                   '#CC3311', '#009988', '#BBBBBB'],
+        "n_colors": 7,
+        "description": "Paul Tol's vibrant qualitative scheme",
+    },
+    
+    'colbrew_q12_1': {
+        "colors": ['#a6cee3', '#1f78b4', '#b2df8a', '#33a02c', '#fb9a99', '#e31a1c',
+                   '#fdbf6f', '#ff7f00', '#cab2d6', '#6a3d9a', '#ffff99', '#b15928'],
+        "n_colors": 12,
+        "description": "ColorBrewer qualitative scheme with 12 colours #1",
+    },
+    
+    'colbrew_q12_2': {
+        "colors": ['#8dd3c7', '#ffffb3', '#bebada', '#fb8072', '#80b1d3', '#fdb462',
+                   '#b3de69', '#fccde5', '#d9d9d9', '#bc80bd', '#ccebc5', '#ffed6f'],
+        "n_colors": 12,
+        "description": "ColorBrewer qualitative scheme with 12 colours #2",
+    },
+    
+    'colbrew_q8_1': {
+        "colors": ['#1b9e77', '#d95f02', '#7570b3', '#e7298a', 
+                   '#66a61e', '#e6ab02', '#a6761d', '#666666'],
+        "n_colors": 8,
+        "description": "ColorBrewer qualitative scheme with 8 colours #1",
+    },
+    
+    'colbrew_q8_2': {
+        "colors": ['#e41a1c', '#377eb8', '#4daf4a', '#984ea3', 
+                   '#ff7f00', '#ffff33', '#a65628', '#f781bf'],
+        "n_colors": 8,
+        "description": "ColorBrewer qualitative scheme with 8 colours #2",
+    },
+}
+
+
+def list_color_palettes(verbose=False):
+    """
+    List available color palettes.
+    
+    Parameters
+    ----------
+    verbose : bool, default False
+        If True, print detailed information about each palette.
+        If False, return list of palette names.
+    
+    Returns
+    -------
+    list of str or None
+        List of palette names if verbose=False, otherwise None.
+    """
+    if verbose:
+        print(f"{'Palette':<18} {'Colors':<8} {'Description'}")
+        print("-" * 80)
+        for name, info in PALETTES.items():
+            print(f"{name:<18} {info['n_colors']:<8} {info['description']}")
+            #print(f"{'':18} {'':8} Best for: {info['best_for']}")
+            print()
+    else:
+        return list(PALETTES.keys())
+
+
+def load_color_palette(palette):
+    """
+    Load a color palette into matplotlib's default color cycle.
+    
+    Sets the color cycle for matplotlib plots using either a predefined 
+    colorblind-friendly palette or a custom list of colors.
+    
+    Parameters
+    ----------
+    palette : str or list of str
+        Either the name of a predefined palette (see `list_color_palettes()`)
+        or a list of color strings in any matplotlib-compatible format.
+    
+    Raises
+    ------
+    ValueError
+        If palette is not a valid palette name or list of colors.
+    
+    Examples
+    --------
+    >>> load_color_palette('okabe_ito')
+    >>> load_color_palette(['#FF0000', '#00FF00', '#0000FF'])
+    """
+    if isinstance(palette, str):
+        if palette not in PALETTES:
+            available = ', '.join(list_color_palettes())
+            raise ValueError(
+                f"Unknown palette '{palette}'. "
+                f"Available palettes: {available}. "
+                f"Use list_color_palettes(verbose=True) for details."
+            )
+        colors = PALETTES[palette]["colors"]
+    elif isinstance(palette, list):
+        colors = palette
+    else:
+        raise ValueError(
+            f"Palette must be a string (palette name) or list of colors, "
+            f"not {type(palette).__name__}."
+        )
+    
+    plt.rcParams['axes.prop_cycle'] = cycler('color', colors)
